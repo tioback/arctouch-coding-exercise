@@ -14,11 +14,6 @@
         android:id="@+id/routeName"
         android:layout_gravity="center_horizontal" />
 
-    <TextView android:text="@string/field_streets_label" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/streetsLabel"
-        android:layout_gravity="center_horizontal" />
-
     <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timetable"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_back_text"
+        android:id="@+id/back"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

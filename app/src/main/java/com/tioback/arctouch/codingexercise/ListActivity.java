@@ -1,25 +1,17 @@
 package com.tioback.arctouch.codingexercise;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.tioback.arctouch.codingexercise.appglu.AppGlu;
 import com.tioback.arctouch.codingexercise.appglu.entity.Route;
-import com.tioback.arctouch.codingexercise.appglu.http.AppGluHttpClient;
 
 import java.io.Serializable;
-import java.text.ParseException;
 
 public class ListActivity extends ProtoActivity {
     private Button search;
@@ -79,7 +71,8 @@ public class ListActivity extends ProtoActivity {
         _routes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detail = new Intent(getApplicationContext(), DetailActivity.class);
+                Intent detail = new Intent(ListActivity.this, DetailActivity.class);
+                detail.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(DetailActivity.ROUTE, (Serializable) parent.getAdapter().getItem(position));
                 detail.putExtras(bundle);

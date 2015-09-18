@@ -18,12 +18,12 @@ public class Route implements Serializable {
 
     public Route() {}
 
-    public Route(int id, String shortName, String longName, String lastModifiedDate, int agendyId) throws ParseException {
+    public Route(int id, String shortName, String longName, String lastModifiedDate, int agencyId) throws ParseException {
         this.id = id;
         this.shortName = shortName;
         this.longName = longName;
         this.lastModifiedDate = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ").parse(lastModifiedDate);
-        this.agencyId = agendyId;
+        this.agencyId = agencyId;
     }
 
     public int getId() {
@@ -50,6 +50,10 @@ public class Route implements Serializable {
         this.longName = longName;
     }
 
+    public String getName() {
+        return shortName + " - " + longName;
+    }
+
     public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
@@ -68,6 +72,6 @@ public class Route implements Serializable {
 
     @Override
     public String toString() {
-        return longName;
+        return getName();
     }
 }
