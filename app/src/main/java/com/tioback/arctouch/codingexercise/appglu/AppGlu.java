@@ -9,7 +9,7 @@ import com.tioback.arctouch.codingexercise.appglu.entity.Stop;
  */
 public interface AppGlu {
 
-    Route[] findRoutesByStopName(String stopName);
+    Route[] findRoutesByStopName(String stopName) throws Exception;
 
     Stop[] findStopsByRouteId(int routeId);
 

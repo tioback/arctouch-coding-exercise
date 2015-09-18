@@ -7,4 +7,11 @@
     <string name="button_search_text">Search</string>
     <string name="field_search_hint">Type stop name here...</string>
     <string name="msg_unknown_stop_name">Unknown stop name.</string>
+    <string name="msg_error_getting_route">Error while getting route.</string>
+    <string name="title_activity_routes">Routes</string>
+    <string name="msg_inform_stop_name">Please inform a stop name</string>
+    <string name="title_activity_detail">Route Details</string>
+    <string name="field_streets_label">Streets</string>
+    <string name="field_timetable_label">Timetable</string>
+    <string name="msg_missing_route">Missing route.</string>
 </resources>

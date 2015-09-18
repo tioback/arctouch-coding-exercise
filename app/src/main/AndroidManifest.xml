@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName=".ListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tioback.arctouch.codingexercise.ListActivity" />
+        </activity>
     </application>
+
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
 
 </manifest>
