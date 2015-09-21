@@ -1,6 +1,7 @@
 package com.tioback.arctouch.codingexercise;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 
 public class ListActivity extends ProtoActivity {
     private Button search;
+    private Button map;
     private ListView _routes;
 
     @Override
@@ -30,11 +32,12 @@ public class ListActivity extends ProtoActivity {
 
     private void configureElementsBehaviours() {
         configureSearchButton();
+        configureMapButton();
         configureRoutesList();
     }
 
     private void configureSearchButton() {
-        search = (Button) findViewById(R.id.button);
+        search = (Button) findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,15 +49,57 @@ public class ListActivity extends ProtoActivity {
                     return;
                 }
 
-                Route[] routes = getRoutes(stopName);
-                if (routes == null || routes.length == 0) {
-                    showMessage(R.string.msg_unknown_stop_name);
-                    return;
-                }
-
-                updateRouteList(routes);
+                searchAndUpdateRoutes(stopName);
             }
         });
+    }
+
+    private void searchAndUpdateRoutes(String stopName) {
+        Route[] routes = getRoutes(stopName);
+        if (routes == null || routes.length == 0) {
+            showMessage(R.string.msg_unknown_stop_name);
+            return;
+        }
+
+        updateRouteList(routes);
+    }
+
+    private static final int PICK_STREET = 0;
+
+    private void configureMapButton() {
+        map = (Button) findViewById(R.id.map);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapIntent = new Intent(getApplicationContext(), MapsActivity.class);
+                mapIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityForResult(mapIntent, PICK_STREET);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != PICK_STREET) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        if (!data.getBooleanExtra(MapsActivity.PICKED_STREET, false)) {
+            return;
+        }
+
+        String streetName = data.getStringExtra(MapsActivity.STREET_NAME);
+        if (streetName == null || streetName.trim().isEmpty()) {
+            showMessage(R.string.msg_unknown_stop_name);
+            return;
+        }
+
+        searchAndUpdateRoutes(streetName);
     }
 
     private Route[] getRoutes(String stopName) {

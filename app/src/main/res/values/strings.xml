@@ -15,4 +15,11 @@
     <string name="field_timetable_label">Timetable</string>
     <string name="msg_missing_route">Missing route.</string>
     <string name="button_back_text">Back</string>
+    <string name="button_map_text">Map</string>
+    <string name="title_activity_maps">Select Street</string>
+    <string name="msg_error_getting_street">Error getting street</string>
+    <string name="confirm_street_selection_message">Use %1$s for search?</string>
+    <string name="confirm_street_selection_title">Confirm Street Selection</string>
+    <string name="button_no_text">No</string>
+    <string name="button_yes_text">Yes</string>
 </resources>
